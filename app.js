@@ -1,10 +1,12 @@
 var express = require("express"),
-    path = require("path");
+    path = require("path"),
+    handlebars = require("express-handlebars").create({defaultLayout: 'main'});
 
 var app = express();
 
 app.set("port", process.env.PORT || 3000);
-
+app.engine("handlebars", handlebars.engine);
+app.set("view engine", "handlebars");
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
