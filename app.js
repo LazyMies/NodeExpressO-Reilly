@@ -1,6 +1,5 @@
 var express = require("express"),
-    path = require("path"),
-    handlebars = require("express-handlebars").create({defaultLayout: 'main'});
+    path = require("path");
 
 var app = express();
 
