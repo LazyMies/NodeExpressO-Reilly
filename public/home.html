@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Home page</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+        <script>
+            var app = angular.module("myApp", []);
+
+            app.controller("myController", function($scope){
+                $scope.message = "Hello and welcome to my home page";
+            });
+        </script>
     </head>
-    <body>
+    <body ng-controller="myController">
         <h1>This is the home page</h1>
+
+        <h5>{{message}}</h5>
     </body>
 </html>
