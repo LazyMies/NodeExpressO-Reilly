@@ -1,33 +1,34 @@
 var express = require("express"),
-    path = require("path");
-
-var publicDir = path.join(__dirname, "public");
+    path = require("path"),
+    handlebars = require("express-handlebars").create({defaultLayout: 'main'});
 
 var app = express();
 
 app.set("port", process.env.PORT || 3000);
-app.use(express.static(publicDir));
+app.engine("handlebars", handlebars.engine);
+app.set("view engine", "handlebars");
+ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(publicDir, "home.html"));
+    res.render("index");
 });
 
 app.get("/about", function (req, res) {
-    res.sendFile(path.join(publicDir, "about.html"));
+    res.render("about");
 });
 
 
 // custom 404 page
 app.use(function (req, res) {
     res.status(404);
-    res.sendFile(path.join(publicDir, "404.html"));
+    res.render("404");
 });
 
-// custom 500 page
+// custom 404 page
 app.use(function (err, req, res, next) {
     console.log(err.stack);
     res.status(500);
-    res.sendFile(path.join(publicDir, "500.html"));
+    res.render("500");
 });
 
 app.listen(app.get("port"), function () {
