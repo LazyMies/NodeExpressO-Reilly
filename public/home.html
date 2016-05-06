@@ -8,17 +8,14 @@
         <script>
             var app = angular.module("myApp", []);
             
-            var dataUrl = ""
-
             app.controller("myController", function($scope, $http){
                 $scope.message = "Hello and welcome to my home page";
                 
-                /*
-                $http.get(dataUrl).success(function(data){
+                $http.get("http://localhost:3000/data").success(function(data){
                     $scope.data = data;
                 }).error(function(error){
                     $scope.error = error
-                }); */
+                });
             });
         </script>
     </head>

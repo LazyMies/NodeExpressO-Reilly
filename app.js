@@ -1,16 +1,9 @@
 var express = require("express"),
     path = require("path"),
-    fs = require("fs");
+    fs = require("fs"),
+    json = require("./public/data.json");
 
 var directoryPath = path.join(__dirname, "public");
-
-var content = fs.readFile(path.join(__dirname, 'data.json'), function (err, data){
-    if(err) {
-        throw err;
-    }
-    
-    return data;
-});
 
 var app = express();
 
@@ -26,7 +19,7 @@ app.get("/about", function (req, res) {
 });
 
 app.get("/data", function(req, res) {
-    console.log(content);
+    res.send(json);
 });
 
 
