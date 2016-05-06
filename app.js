@@ -1,7 +1,16 @@
 var express = require("express"),
-    path = require("path");
+    path = require("path"),
+    fs = require("fs");
 
 var directoryPath = path.join(__dirname, "public");
+
+var content = fs.readFile(path.join(__dirname, 'data.json'), function (err, data){
+    if(err) {
+        throw err;
+    }
+    
+    return data;
+});
 
 var app = express();
 
@@ -14,6 +23,10 @@ app.get('/', function (req, res) {
 
 app.get("/about", function (req, res) {
     res.sendFile(path.join(directoryPath, "about.html"));
+});
+
+app.get("/data", function(req, res) {
+    console.log(content);
 });
 
 
